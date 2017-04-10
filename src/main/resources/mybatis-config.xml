@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties"/>
+
+    <typeAliases>
+        <!--别名 类名 或者 类名首字母小写 UserDo 或者 userDo 推荐使用 -->
+        <typeAlias alias="UserDo" type="com.fengze.mybatis.domain.UserDo"/>
+        <!--<package name="com.fengze.mybatis.domain"/>-->
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+
+        <!--需要遵循几项配置关系-->
+        <!--1. mapper接口类名要和mapper配置文件的名称一样-->
+        <!--2. 接口和配置文件要在同一目录下-->
+        <!--3. 使用mapper代理开发模式-->
+        <!--<package name="com.fengze.mybatis.mapper"/>-->
+    </mappers>
+
+</configuration>
